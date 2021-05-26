@@ -1,0 +1,16 @@
+base:
+  random_state: 100
+  repo_path: '/data/home/yaantok1/Rec_Sys_S/Jupyter/ml_engineering_example'
+
+load_data:
+  folder: datasets
+  file: station_data.xlsx
+
+fen: # features_engeneering
+  features_to_drop: ['air_temp_mean']
+
+preprocessing:
+  preprocess_outliers: ['air_humidity_mean']
+
+output:
+  features: 'features.csv'
