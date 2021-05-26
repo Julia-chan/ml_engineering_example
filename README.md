@@ -17,3 +17,5 @@
 ## Запуск
 
 Используется виртуальное окружение с Python 3.6 и версиями библиотек `requirements.txt` .
+
+```pip install -r requirements.txt```
