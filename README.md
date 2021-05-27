@@ -16,7 +16,7 @@
 
 ## Запуск
 
-Данные задачи `station_data.xlsx` необходимо положить в папку `datasets`.
+Данные задачи `station_data.xlsx` необходимо положить в папку `datasets`. Чтобы запускать ноутбуки нужно создать ссылку как в `notebooks/01_EDA.ipynb` .
 
 Используется виртуальное окружение с Python 3.6 и версиями библиотек `requirements.txt` .
 
@@ -35,3 +35,7 @@ https://github.com/wemake-services/wemake-python-styleguide
 Конфиг берется из файла .pyproject.toml. Там описаны правила, которые Flake8 НЕ отлавливает.
 
 ```flakehell lint source --config pyproject.toml```
+
+## Запуск теста
+
+```pytest source```
