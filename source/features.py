@@ -101,3 +101,26 @@ class AddHour(AddDatetimeColumn):
         X_copy = X.copy()
         X_copy[output_column] = pd.to_datetime(X_copy[self.datetime_str_column]).dt.hour
         return X_copy
+
+    
+class DropColumns(BaseEstimator, TransformerMixin):
+    """
+    Drop list of columns in Pandas df.
+    
+    Parameters
+    -------
+    list_columns: list, default=None == 0 columns drop
+    """
+
+    def __init__(self, list_columns=None):
+        if list_columns is None:
+            list_columns = []
+        self.list_columns = list_columns
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        X_copy = X.copy()
+        X_copy.drop(self.list_columns, axis=1, inplace=True)
+        return X_copy

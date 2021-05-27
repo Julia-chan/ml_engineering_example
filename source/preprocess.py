@@ -1,4 +1,3 @@
-import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
@@ -18,7 +17,15 @@ def drop_row_strictly_greater_than(df, column_name, max_value):
     return df[df[column_name] <= max_value]
 
 class DropOuliers(BaseEstimator, TransformerMixin):
-    """Drop outliers using quantile for column."""
+    """Drop outliers using quantile for column.
+    
+    Parameters
+    ----------
+    column: str
+        Column of Dataframe to count quantile and remove outliers.
+    precentage_of_outliers: float
+        Prc. of outliers to remove simmetricaly.
+    """
     
     def __init__(self, column, percentage_of_outliers=0.05):
         self.column = column

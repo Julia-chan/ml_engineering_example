@@ -1,6 +1,6 @@
-import pandas as pd
 import argparse
 import yaml
+import os
 
 from sklearn.pipeline import Pipeline
 
@@ -9,7 +9,8 @@ from source.features import AddMonth, AddDay, AddHour, DropColumns
 from source.preprocess import DropOuliers
 
 def features(config_path):
-    config = yaml.safe_load(open('params.yaml'))
+    with open(config_path, 'r') as f:
+        config = yaml.safe_load(f)
     i_o_folder = os.path.join(config['base']['repo_path'], config['load_data']['folder'])
     
     station_data = InputLeafData(

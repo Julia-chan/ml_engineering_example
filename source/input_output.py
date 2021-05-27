@@ -35,34 +35,40 @@ def check_columns_exist(pandas_df, list_of_columns):
     pd_columns_set = set(pandas_df.columns.to_list())
     check_columns_set = set(list_of_columns)
     
-    if not pd_columns_set == check_columns_set:
+    if pd_columns_set != check_columns_set:
         missed_columns = check_columns_set.difference(pd_columns_set)
         if len(missed_columns) > 0:
             raise RuntimeError(f'Missed columns : {missed_columns}')
 
 def check_additional_columns(pandas_df, list_of_columns):
+    pd_columns_set = set(pandas_df.columns.to_list())
+    check_columns_set = set(list_of_columns)
+    
     additional_columns = pd_columns_set.difference(check_columns_set)
     if len(additional_columns) > 0:
-        warning.warn(f'Have additional columns: {additional_columns}')
+        warnings.warn(f'Have additional columns: {additional_columns}')
     return additional_columns
 
 class InputLeafData:
-    # Class, where we standartize processing of excel file from business and prevent common mistakes.
+    # Class, where we standartize processing of excel 
+    # file from business and prevent common mistakes.
     
     def __init__(self, folder_path, input_file_name):
         self.folder_path = folder_path
         self.input_file_name = input_file_name
     
     def __load_file(self):
-        self.data = pd.read_excel(os.path.join(self.folder_path, self.input_file_name), header=[0, 1])
+        self.pandas_df = pd.read_excel(
+            os.path.join(self.folder_path, self.input_file_name), 
+            header=[0, 1])
         # Flatten Multiindex
-        self.data.columns = self.data.columns.to_flat_index()
-        check_columns_exist(self.data, list(dict_for_leaf_humidity_columns.keys()))
-        self.data.rename(dict_for_leaf_humidity_columns, axis=1, inplace=True)
+        self.pandas_df.columns = self.pandas_df.columns.to_flat_index()
+        check_columns_exist(self.pandas_df, list(dict_for_leaf_humidity_columns.keys()))
+        self.pandas_df.rename(dict_for_leaf_humidity_columns, axis=1, inplace=True)
         
     def get_data(self):
         self.__load_file()
-        return self.data
+        return self.pandas_df
     
 class OutputLeafData:
     # Class where we output standartized xlsx.
@@ -75,7 +81,9 @@ class OutputLeafData:
     def __process_pandas_df(self):
         invert_dict_for_leaf_humidity_columns = invert_dict(dict_for_leaf_humidity_columns)
         invert_dict_for_leaf_humidity_columns[self.prediction_column] = ('Влажность листа [предск]', 'значение')
-        check_columns_exist(self.pandas_df, list(invert_dict_for_leaf_humidity_columns.keys()) + [self.prediction_column])
+        check_columns_exist(
+            self.pandas_df, 
+            list(invert_dict_for_leaf_humidity_columns.keys()) + [self.prediction_column])
         self.pandas_df = self.pandas_df.rename(invert_dict_for_leaf_humidity_columns, axis=1)
         self.pandas_df.columns = pd.MultiIndex.from_tuples(self.pandas_df.columns)
     

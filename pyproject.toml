@@ -1,0 +1,87 @@
+# `flakehell` specific configuration.
+# This file is served as `base` config under `[tool.flakehell]`
+
+# Make sure to install it with:
+# `pip install flakehell`
+
+# See:
+# https://wemake-python-stylegui.de/en/latest/pages/usage/integrations/flakehell.html
+
+# This file is not related to `nitpick` at all.
+# This file is optional, not required for `flake8` users.
+
+[tool.flakehell]
+baseline = ".flakehell_baseline"
+
+format = "grouped"
+enable_extensions = "G"
+max_line_length = 120
+show_source = true
+statistics = true
+doctests = true
+max-complexity = 10
+exclude = [".ipynb_checkpoints", "*.ipynb", "ab_tests", "data", "notebooks", "notebooks_mr_check", "*.build", "*.txt"]
+accept_encodings = "utf-8"
+
+# NAME                     | CODES           
+# flake8-bandit            | S                
+# flake8-broken-line       | N4               
+# flake8-bugbear           | B                
+# flake8-commas            | C81              
+# flake8-comprehensions    | C4               
+# flake8-darglint          | DAR              
+# flake8-debugger          | T100             
+# flake8-docstrings        | D                
+# flake8-eradicate         | E8               
+# flake8-isort             | I00              
+# flake8-quotes            | Q0               
+# flake8-rst-docstrings    | RST              
+# flake8-string-format     | P  
+
+# For Wemake-python-styleguide:
+# System WPS000 - WPS099
+# Naming WPS100 - WPS199
+# Complexity WPS200 - WPS299
+# Consistency WPS300 - WPS399
+# Best practices WPS400 - WPS499
+# Refactoring WPS500 - WPS599
+# OOP WPS600 - WPS699
+
+[tool.flakehell.plugins]
+"flake8-*" = ["+*", "-C812", "-D100", "-D104", "-DAR003", "-D202", "-D401", "-E121", "-E126", "-I001", "-I004", "-I005", "-Q000", "-Q001", "-S301", "-S403", "-S608"]
+# C812 missing trailing comma
+# D100 Missing docstring  public module
+# DAR003 Incorrect indentation: ~<
+# D104 Missing docstring in public package
+# D202 No blank lines allowed after function docstring
+# D401 First line should be in imperative mood
+# E121 continuation line under-indented for hanging indent
+# E126 continuation line over-indented for hanging indent
+# I001 isort found an import in the wrong position
+# I004 isort found an unexpected blank line in imports
+# I005 isort found an unexpected missing import
+# Q000 Remove bad quotes
+# Q001 Remove bad quotes from multiline string
+# S301 Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.
+# S403 Consider possible security implications associated with dill module.
+# S608 Possible SQL injection vector through string-based query construction.
+mccabe = ["+*"] # C90
+nitpick = ["+*"]
+"pep8-naming" = ["+*", "-N812"] # N8
+# N812 lowercase 'pyspark.sql.functions' imported as non lowercase 'F'
+pycodestyle = ["+*", "-W291", "-W293"] # E, W
+# W291 trailing whitespace
+# W293 blank line contains whitespace
+pyflakes = ["+*"] # F
+"wemake-python-styleguide" = ["+*", "-WPS111", "-WPS201", "-WPS210", "-WPS211", "-WPS213", "-WPS221", "-WPS301", "-WPS305", "-WPS319", "-WPS348", "-WPS433"] # WPS
+# WPS111 Found too short name: K < 2
+# WPS201 Found module with too many imports: 21 > 12
+# WPS210 Found too many local variables: 9 > 5
+# WPS211 Found too many arguments: 8 > 5
+# WPS213 Found too many expressions: 21 > 9
+# WPS221 Found line with high Jones Complexity: 15 > 14
+# WPS301 Found dotted raw import: matplotlib.pyplot
+# WPS305 Found `f` string
+# WPS319 Found bracket in wrong position
+# WPS348: Found a line that starts with a dot
+# WPS433 Found nested import

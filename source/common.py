@@ -1,4 +1,3 @@
-import pandas as pd
 from tabulate import tabulate
 
 def invert_dict(dict_to_invert):
