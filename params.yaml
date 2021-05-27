@@ -15,6 +15,7 @@ preprocessing:
 output:
   features: 'features.csv'
   model: 'model.joblib'
+  output_file: 'station_data_predictions.xlsx'
 
 train:
   target_column: 'leaf_humidity_min'
