@@ -29,7 +29,7 @@ def features(config_path):
     # Preprocessing. Different from features generator => class may have fit method.
     features_preprocessing = []
     for i in config['preprocessing']['preprocess_outliers']:
-        features_preprocessing.append((i, DropOuliers(i)))
+        features_preprocessing.append((i, DropOuliers(i, 3)))
     
     features_pipeline = Pipeline(features_enineering + features_preprocessing)
     

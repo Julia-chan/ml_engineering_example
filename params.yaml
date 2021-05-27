@@ -10,7 +10,16 @@ fen: # features_engeneering
   features_to_drop: ['air_temp_mean']
 
 preprocessing:
-  preprocess_outliers: ['air_humidity_mean']
+  preprocess_outliers: ['air_humidity_min']
 
 output:
   features: 'features.csv'
+  model: 'model.joblib'
+
+train:
+  target_column: 'leaf_humidity_min'
+  output_column: 'prediction'
+  select: ['air_temp_max', 'air_temp_min', 'dew_point_mean', 'dew_point_min', 'air_humidity_mean', 'air_humidity_max', 'air_humidity_min', 'wind_speed_mean', 'wind_speed_max']
+  catboost:
+    iterations: 100
+    categorical: []
