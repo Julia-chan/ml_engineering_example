@@ -7,6 +7,7 @@ async-generator==1.10
 attrs==19.3.0
 Babel==2.9.0
 backcall==0.1.0
+bandit==1.7.0
 beautifulsoup4==4.9.0
 black==20.8b1
 bleach==3.1.5
@@ -66,7 +67,6 @@ jsonpath-ng==1.5.2
 jsonschema==3.2.0
 jupyter-client==6.1.11
 jupyter-core==4.6.3
-kaggle==1.5.6
 kiwisolver==1.2.0
 lazy-object-proxy==1.5.2
 lightfm==1.15
@@ -90,7 +90,6 @@ openpyxl==3.0.5
 packaging==20.3
 pandas==0.25.3
 pandocfilters==1.4.2
-papermill==2.3.2
 parso==0.7.0
 pathspec==0.8.1
 pbr==5.5.1
@@ -143,6 +142,14 @@ sortedcontainers==2.2.2
 soupsieve==2.0
 sparkmonitor==0.0.9
 sparsesvd==0.2.2
+Sphinx==3.5.1
+sphinxcontrib-applehelp==1.0.2
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==1.0.3
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-napoleon==0.7
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.4
 stevedore==3.3.0
 tabulate==0.8.7
 tenacity==6.3.1
